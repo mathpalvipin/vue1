@@ -4,7 +4,7 @@
     <div class="keyboard"  >
       <div class="controller">
     <div class="control" >
-      <h10 class="heading"> Controller{{password}}</h10>
+      <div class="heading"> Controller</div>
       <div class="control-keys">
       <p> <i class="arrow up" @click="changecolor(0)"></i></p>
       <p><i class="arrow right" @click="changecolor(1)"></i></p>
@@ -35,15 +35,15 @@
       </div>
     </div>
 
-   
   </div>
 </template>
 
 <script>
+   import {store} from '../store.js'
 export default {
    data() {
     return {
-      password: "",
+     
       items: [],
       letters: [
         "a",
@@ -143,7 +143,7 @@ export default {
       console.log(randomAlgo);
       switch (randomAlgo) {
         case 1:
-          console.log("The Fisher-Yates algorith");
+          // console.log("The Fisher-Yates algorith");
           for (let i = this.letters.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             const temp = this.letters[i];
@@ -158,7 +158,7 @@ export default {
           }
           break;
         case 2:
-          console.log("Simple algo ");
+          // console.log("Simple algo ");
           this.letters = this.letters.sort((a, b) => 0.5 - Math.random());
           this.colors = this.colors.sort((a, b) => 0.5 - Math.random());
           break;
@@ -187,7 +187,7 @@ export default {
       let rotation = 0;
       switch (n) {
         case 0:
-          console.log("up arroa");
+          // console.log("up arroa");
           rotation = 4;
 
           this.colors = colors
@@ -196,7 +196,7 @@ export default {
 
           break;
         case 1:
-          console.log("right shift");
+          // console.log("right shift");
           rotation = 1;
 
           this.colors = colors
@@ -207,7 +207,7 @@ export default {
 
           break;
         case 2:
-          console.log("up arrow");
+          // console.log("up arrow");
           rotation = 4;
 
           this.colors = colors
@@ -218,7 +218,7 @@ export default {
 
           break;
         case 3:
-          console.log("left arrow");
+          // console.log("left arrow");
           rotation = 1;
 
           this.colors = colors
@@ -283,10 +283,9 @@ export default {
       //     break;
       // }
 
-      console.log(letter);
-      this.password+=letter;
-      console.log(this.password);
-      this.$emit('update',this.password);
+       
+    store.password+=letter;
+   
       this.init();
     },
   },
