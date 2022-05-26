@@ -15,7 +15,7 @@
 
   </div>
          
-		<input type="color" name="color" />
+		<input type="color" name="color" v-model="store.color" />
 		<div class="button-group">
 			<router-link class="myButton1" to="/login"
 				>already registered !</router-link
@@ -50,7 +50,8 @@ export default {
       this.showPassword = !this.showPassword;
     },
     signup(){
-    	  const data = { email:store.email,password:store.password };
+    	console.log(store.color);
+    	  const data = { email:store.email,password:store.password ,color:store.color};
   axios.post("http://localhost:4242/authentication", data)
     .then(response =>{console.log(response.data) 
     	store.email="";

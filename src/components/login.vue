@@ -18,7 +18,7 @@
 				>not register yet !</router-link
 			>
 
-			<a href="#" class="myButton">login</a>
+			<a href="#" class="myButton" @click="login">login</a>
 		</div>
 	</div>
 </template>
@@ -26,6 +26,7 @@
 <script type="text/javascript">
 import { store } from "../store.js";
  
+ import axios from 'axios';
 
 import show from '../assets/eye-slash-solid.svg'
 import hide from '../assets/eye-solid.svg'
@@ -49,6 +50,19 @@ export default {
 	methods:{
 		toggleShow() {
       this.showPassword = !this.showPassword;
+    },
+      login(){
+
+const data = { email:store.email,password:store.password };
+  axios.post("http://localhost:4242/login", data)
+    .then(response =>{console.log(response.data) 
+    	store.email="";
+    	store.password="";}
+    	)
+    .catch(error => {
+      this.errorMessage = error.message;
+      console.error("There was an error!", error);
+    });
     }
 	}
 };
