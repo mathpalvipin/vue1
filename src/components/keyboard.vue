@@ -120,17 +120,17 @@ export default {
         "#8A2BE2",
         "#0000FF",
         "#A52A2A",
-        "#00008B",
+        "#808000",
         "#A9A9A9",
         "#006400",
         "#FF1493",
         "#FFD700",
-        "#90EE90",
+        "#00FF00",
         "#FF0000",
         "#F5F5F5",
         "#FFA500",
         "#D2B48C",
-        "#20B2AA",
+        "#800080",
       ],
     };
   },
@@ -177,7 +177,7 @@ export default {
           }
           vr[j] = { array: ar, color: this.colors[colorcount++] };
         }
-
+console.log(this.colors);
         this.items[i] = vr;
       }
     },
