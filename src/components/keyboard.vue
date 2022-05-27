@@ -177,7 +177,7 @@ export default {
           }
           vr[j] = { array: ar, color: this.colors[colorcount++] };
         }
-console.log(this.colors);
+
         this.items[i] = vr;
       }
     },
@@ -230,8 +230,7 @@ console.log(this.colors);
 
       for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
-          // console.log(this.items[i][j].color);
-          // console.log(i*4+j);
+         
           this.items[i][j].color = this.colors[i * 4 + j];
         }
       }

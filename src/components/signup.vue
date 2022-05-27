@@ -14,8 +14,19 @@
          
 
   </div>
-         
-		<input type="color" name="color" v-model="store.color" />
+        
+		<label for="cars">Choose a color:</label>
+
+<select name="cars" id="color" class="input" v-model='store.color' v-bind:style="{backgroundColor: store.color.c}" >
+	
+
+   <option v-for="color in colors" v-bind:value="color" v-bind:style="{backgroundColor:color.c}" >
+       {{ color.name }}
+
+    </option>
+  
+</select>
+<div  v-if ="currentcolor" :style="{backgroundColor:currentcolor}"></div>
 		<div class="button-group">
 			<router-link class="myButton1" to="/login"
 				>already registered !</router-link
@@ -36,7 +47,25 @@ export default {
 		  showPassword: true, 
 		  show,
 		  hide,
-		  
+		  colors: [
+        {'c':"#00FFFF", 'name':"Aqua"},
+        {'c':"#0000FF", 'name':"Blue"},
+        {'c':"#A52A2A", 'name':"Brown"},
+        {'c':"#000000", 'name':"Black"},
+        {'c':"#808000", 'name':"Olive"},
+        {'c':"#8A2BE2", 'name':"Voilet"},
+        {'c':"#A9A9A9", 'name':"DarkGray"},
+        {'c':"#006400", 'name':"DarkGreen"},
+        {'c':"#FF1493", 'name':"Pink"},
+        {'c':"#FFD700", 'name':"Gold"},
+        {'c':"#00FF00", 'name':"Lime"},
+        {'c':"#FF0000", 'name':"Red"},
+        {'c':"#F5F5F5", 'name':"White"},
+        {'c':"#FFA500", 'name':"OrangeRed"},
+        {'c':"#D2B48C", 'name':"Tan"},
+        {'c':"#800080", 'name':"Purple"}
+      ],
+		 currentcolor:"", 
 		    
 };
 	},
@@ -46,12 +75,18 @@ export default {
     }
 	},
 	methods:{
+		chosecolor(n){
+    this.currentcolor= n.target.value.c;
+
+    console.log(this.currentcolor.c);
+		},
 		toggleShow() {
       this.showPassword = !this.showPassword;
     },
     signup(){
-    	console.log(store.color);
-    	  const data = { email:store.email,password:store.password ,color:store.color};
+
+const data = { email:store.email,password:store.password ,color:store.color.c};
+console.log(data);
   axios.post("http://localhost:4242/authentication", data)
     .then(response =>{console.log(response.data) 
     	store.email="";
@@ -155,4 +190,8 @@ input {
 	 
 }
 
+.colorshow{
+	 height: 30px;
+width: 20px;
+border: 1px solid  black;}
 </style>

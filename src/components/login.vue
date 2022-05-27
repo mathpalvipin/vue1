@@ -1,6 +1,7 @@
 <template>
 	<div class="form">
 		<input type="email" class="input" placeholder="email" v-model="store.email"/>
+		<button class="myButton" @click="selectuser">Check</button>
 		 <input v-if="showPassword" type="text" class="input" v-model="store.password"  placeholder=" password"  disabled />
            <input v-else type="password" class="input" v-model="store.password" disabled>
 
@@ -33,7 +34,7 @@ import hide from '../assets/eye-solid.svg'
 export default {
 	data() {
 		return { store,
-		  showPassword: true, 
+		  showPassword: false, 
 		  show,
 		  hide,
 		    
@@ -48,6 +49,19 @@ export default {
     }
 	},
 	methods:{
+		selectuser(){
+
+			const data = { email:store.email};
+			console.log(data);
+    axios.post("http://localhost:4242/checkuser", data)
+    .then(response =>{console.log(response.data) 
+    	}
+    	)
+    .catch(error => {
+      this.errorMessage = error.message;
+      console.error("There was an error!", error);
+    });
+		},
 		toggleShow() {
       this.showPassword = !this.showPassword;
     },
